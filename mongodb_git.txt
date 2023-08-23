@@ -1,0 +1,216 @@
+practice> db.zen_database.insertOne({"users":"Akhil","codekata":"input/output","attendance":76,"topics":"HTML/CSS","tasks":"Responsive web design","company_drives":"B45 WE Tamil","mentor":"Sanjay","Date":"10-10-2020"});
+{
+  acknowledged: true,
+  insertedId: ObjectId("64e598e9aa3432092569fe7f")
+}
+
+practice>
+db.zen_database.insertOne({"users":"Akash","codekata":"Absolute Beginner","attendance":78,"topics":"Javascript","tasks":"Introduction to Browser & web","company_drives":"B45 WE Tamil","mentor":"Sanjay","Date":"15-10-2020"});
+{
+  acknowledged: true,
+  insertedId: ObjectId("64e598e9aa3432092569fe80")
+}
+
+
+practice> db.zen_database.insertOne({"users":"arjun","codekata":"Array","attendance":80,"topics":"Javascript","tasks":"Classes and Objects","company_drives":"B45 WE Tamil","mentor":"Sai Mohan","Date":"15-10-2020"})
+{
+  acknowledged: true,
+  insertedId: ObjectId("64e598e9aa3432092569fe81")
+}
+
+practice> db.zen_database.insertOne({"users":"pradeep","codekata":"Mathematics","attendance":85,"topics":"DOM","tasks":"Document vs Window","company_drives":"B45 WE Tamil","mentor":"Sai Mohan","Date":"17-10-2020"})
+
+{
+  acknowledged: true,
+  insertedId: ObjectId("64e598e9aa3432092569fe82")
+}
+ practice>db.zen_database.insertOne({"users":"Vishal","codekata":"String","attendance":85,"topics":"Async programming","tasks":"Callback","company_drives":"B45 WE Tamil","mentor":"Sai Mohan","Date":"24-10-2020"});
+ {
+  acknowledged: true,
+  insertedId: ObjectId("64e598e9aa3432092569fe83")
+}
+
+practice> db.zen_database.insertOne({"users":"Vishal","codekata":"String","attendance":66,"topics":"Async programming","tasks":"Callback","company_drives":0,"mentor":"Sai Mohan","Date":"24-10-2020"});
+{
+  acknowledged: true,
+  insertedId: ObjectId("64e5ac9faa3432092569fe84")
+}
+
+db.zen_database.updateMany({attendance:{$gt:66}},{$set:{users:"Karuna"}});
+practice> db.zen_database.find();
+[
+  {
+    _id: ObjectId("64e598e9aa3432092569fe7f"),
+    users: 'Akhil',
+    codekata: 'input/output',
+    attendance: 76,
+    topics: 'HTML/CSS',
+    tasks: 'Responsive web design',
+    company_drives: 'B45 WE Tamil',
+    mentor: 'Sanjay',
+    Date: '10-10-2020'
+  },
+  {
+    _id: ObjectId("64e59aa0aa3432092569fe80"),
+    users: 'Akash',
+    codekata: 'Absolute Beginner',
+    attendance: 78,
+    topics: 'Javascript',
+    tasks: 'Introduction to Browser & web',
+    company_drives: 'B45 WE Tamil',
+    mentor: 'Sanjay',
+    Date: '15-10-2020'
+  },
+practice>
+    _id: ObjectId("64e59b4baa3432092569fe81"),
+    users: 'arjun',
+    codekata: 'Array',
+    attendance: 80,
+    topics: 'Javascript',
+    tasks: 'Classes and Objects',
+    company_drives: 'B45 WE Tamil',
+    mentor: 'Sai Mohan',
+    Date: '15-10-2020'
+  },
+  {
+    _id: ObjectId("64e59bcfaa3432092569fe82"),
+    users: 'pradeep',
+    codekata: 'Mathematics',
+    attendance: 85,
+    topics: 'DOM',
+    tasks: 'Document vs Window',
+    company_drives: 'B45 WE Tamil',
+    mentor: 'Sai Mohan',
+    Date: '17-10-2020'
+  },
+  {
+    _id: ObjectId("64e59c4faa3432092569fe83"),
+    users: 'Vishal',
+    codekata: 'String',
+    attendance: 85,
+    topics: 'Async programming',
+    tasks: 'Callback',
+    company_drives: 'B45 WE Tamil',
+    mentor: 'Sai Mohan',
+    Date: '24-10-2020'
+  }
+]
+db.zen_database.updateMany(
+    { users: { $gt:'Vishal' } },
+    { $set: { codekata: 10 } }
+);
+
+
+---Find all the topics and tasks which are thought in the month of October----
+db.zen_database.find({"Date":{$gt :"01-10-2020",$lt:"31-10-2020"}},{topics :1,tasks: 1});
+[
+  {
+    _id: ObjectId("64e598e9aa3432092569fe7f"),
+    topics: 'HTML/CSS',
+    tasks: 'Responsive web design'
+  },
+  {
+    _id: ObjectId("64e59aa0aa3432092569fe80"),
+    topics: 'Javascript',
+    tasks: 'Introduction to Browser & web'
+  },
+  {
+    _id: ObjectId("64e59b4baa3432092569fe81"),
+    topics: 'Javascript',
+    tasks: 'Classes and Objects'
+  },
+  {
+    _id: ObjectId("64e59bcfaa3432092569fe82"),
+    topics: 'DOM',
+    tasks: 'Document vs Window'
+  },
+  {
+    _id: ObjectId("64e59c4faa3432092569fe83"),
+    topics: 'Async programming',
+    tasks: 'Callback'
+  }
+]
+-----------------------Find all the company drives which appeared between 15 oct-2020 and 31-oct-2020-------------
+db.zen_database.find({"Date":{$gt :"15-10-2020",$lt:"31-10-2020"}},{company_drives :1});
+
+practice> db.zen_database.find({"Date":{$gt :"15-10-2020",$lt:"31-10-2020"}},{company_drives :1});
+[
+  {
+    _id: ObjectId("64e59bcfaa3432092569fe82"),
+    company_drives: 'Verizon'
+  },
+  {
+    _id: ObjectId("64e59c4faa3432092569fe83"),
+    company_drives: 'Verizon'
+  }
+]
+---------------------------Find all the company drives and students who are appeared for the placement.---------
+practice>db.zen_database.find({
+... company_drives:{$nin:[0]}},{company_drives:1,users:1});
+[
+  {
+    _id: ObjectId("64e598e9aa3432092569fe7f"),
+    users: 'Karuna',
+    company_drives: 'CTS'
+  },
+  {
+    _id: ObjectId("64e59aa0aa3432092569fe80"),
+    users: 'Karuna',
+    company_drives: 'CTS'
+  },
+  {
+    _id: ObjectId("64e59b4baa3432092569fe81"),
+    users: 'Karuna',
+    company_drives: 'Verizon'
+  },
+  {
+    _id: ObjectId("64e59bcfaa3432092569fe82"),
+    users: 'Karuna',
+    company_drives: 'Verizon'
+  },
+  {
+    _id: ObjectId("64e59c4faa3432092569fe83"),
+    users: 'Karuna',
+    company_drives: 'Verizon'
+  }
+]
+----------------------------Find the number of problems solved by the user in codekata----------
+practice> db.zen_database.countDocuments({codekata:{$gte:10}});
+6
+-----Find the number of users who are absent and task is not submitted  between 15 oct-2020 and 31-oct-2020-------
+db.zen_database.find({$and:[{"Date":{$gt :"15-10-2020",$lt:"31-10-2020" }},{"attendance":{$gt:0}}]});
+[
+  {
+    _id: ObjectId("64e59bcfaa3432092569fe82"),
+    users: 'Akilesh',
+    codekata: 27,
+    attendance: 85,
+    topics: 'DOM',
+    tasks: 'Document vs Window',
+    company_drives: 'Verizon',
+    mentor: 'Sai Mohan',
+    Date: '17-10-2020'
+  },
+  {
+    _id: ObjectId("64e59c4faa3432092569fe83"),
+    users: 'Akilesh',
+    codekata: 27,
+    attendance: 85,
+    topics: 'Async programming',
+    tasks: 'Callback',
+    company_drives: 'Verizon',
+    mentor: 'Sai Mohan',
+    Date: '24-10-2020'
+  },
+  {
+    _id: ObjectId("64e5ac9faa3432092569fe84"),
+    users: 'Vishal',
+    codekata: 30,
+    attendance: 66,
+    topics: 'Async programming',
+    tasks: 'Callback',
+    company_drives: 0,
+    mentor: 'Sai Mohan',
+    Date: '24-10-2020'
+  }
+]
