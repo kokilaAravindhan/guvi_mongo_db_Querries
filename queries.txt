@@ -1,0 +1,127 @@
+
+-----------Find all the topics and tasks which are thought in the month of October-----------
+zendb> db.task.find({"month":"oct"},{topic:1,task:1});
+[
+  {
+    _id: ObjectId("6559e5473ba1db85c41dbe33"),
+    topic: 'react JS',
+    task: 5
+  },
+  {
+    _id: ObjectId("6559e5473ba1db85c41dbe34"),
+    topic: 'node js',
+    task: 6
+  }
+]
+------------------Find all the company drives which appeared between 15 oct-2020 and 31-oct-2020---------
+db.companydrives.find({"date":{$gt:"15/10/2023" ,$lt:"31/10/2023"}},{company:1});
+[
+  { _id: ObjectId("6559e0523ba1db85c41dbe2c"), company: 'accenture' },
+  { _id: ObjectId("6559e0523ba1db85c41dbe2d"), company: 'zoho' }
+]
+-----------Find all the company drives and students who are appeared for the placement.------------------
+zendb> db.students.find({"placement":"A"},{users:1,placement:1});
+[
+  {
+    _id: ObjectId("6559e0113ba1db85c41dbe26"),
+    users: 'arul',
+    placement: 'A'
+  },
+  {
+    _id: ObjectId("6559e0113ba1db85c41dbe27"),
+    users: 'balaji',
+    placement: 'A'
+  }
+]
+zendb> db.companydrives.find();
+[
+  {
+    _id: ObjectId("6559e0523ba1db85c41dbe2b"),
+    company: 'HCL',
+    date: '12/10/2023'
+  },
+  {
+    _id: ObjectId("6559e0523ba1db85c41dbe2c"),
+    company: 'accenture',
+    date: '16/10/2023'
+  },
+  {
+    _id: ObjectId("6559e0523ba1db85c41dbe2d"),
+    company: 'zoho',
+    date: '19/10/2023'
+  },
+  {
+    _id: ObjectId("6559e0523ba1db85c41dbe2e"),
+    company: 'amazon',
+    date: '31/10/2023'
+  },
+  {
+    _id: ObjectId("6559e0523ba1db85c41dbe2f"),
+    company: 'cts',
+    date: '15/10/2023'
+  }
+]
+----------------Find the number of problems solved by the user in codekata
+zendb> db.students.find({},{users:1,codekata:1});
+[
+  {
+    _id: ObjectId("6559e0113ba1db85c41dbe26"),
+    users: 'arul',
+    codekata: '80%'
+  },
+  {
+    _id: ObjectId("6559e0113ba1db85c41dbe27"),
+    users: 'balaji',
+    codekata: '65%'
+  },
+  {
+    _id: ObjectId("6559e0113ba1db85c41dbe28"),
+    users: 'Nikhil',
+    codekata: '27%'
+  },
+  {
+    _id: ObjectId("6559e0113ba1db85c41dbe29"),
+    users: 'deva',
+    codekata: '49%'
+  }
+]
+---------------------------Find all the mentors with who has the mentee's count more than 15----------------------
+zendb> db.mentors.find({"mentees":{$gt:15}});
+[
+  {
+    _id: ObjectId("6559dfc43ba1db85c41dbe1b"),
+    mentors: 'daniel',
+    mentees: 25
+  },
+  {
+    _id: ObjectId("6559dfc43ba1db85c41dbe1c"),
+    mentors: 'francis',
+    mentees: 35
+  },
+  {
+    _id: ObjectId("6559dfc43ba1db85c41dbe1d"),
+    mentors: 'Bean',
+    mentees: 40
+  },
+  {
+    _id: ObjectId("6559dfc43ba1db85c41dbe1e"),
+    mentors: 'peter',
+    mentees: 28
+  }
+]
+--------------Find the number of users who are absent and task is not submitted  between 15 oct-2020 and 31-oct-2020---------
+zendb> db.students.find({"placement":"A"});
+[
+  {
+    _id: ObjectId("6559e0113ba1db85c41dbe26"),
+    users: 'arul',
+    codekata: '80%',
+    placement: 'A'
+  },
+  {
+    _id: ObjectId("6559e0113ba1db85c41dbe27"),
+    users: 'balaji',
+    codekata: '65%',
+    placement: 'A'
+  }
+]
